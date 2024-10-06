@@ -1,4 +1,4 @@
-# Project Title
+# GSA
 
 GaussianAvatar 코드 수정한 것들 여기다 올림. original repo: https://github.com/aipixel/GaussianAvatar?tab=readme-ov-file
 
