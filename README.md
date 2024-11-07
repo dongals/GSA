@@ -14,6 +14,7 @@ GaussianAvatar 코드 수정한 것들 여기다 올림. original repo: https://
      ├── train
      ├── cameras.npz
      └── poses_optimized.npz
+.
 
      data/${subject}/train
      ├── images
@@ -34,19 +35,23 @@ GaussianAvatar 코드 수정한 것들 여기다 올림. original repo: https://
  이렇게 해서 얻은 train_stage2의 prediction 결과를 렌더링한 것이 가장 정확하고, novel pose를 적용해서 렌더링하면 정확도가 떨어진다.
  
      python train.py -s $path_to_data/$subject -m output/{$subject}_stage1 --train_stage 1 --pose_op_start_iter 10
+.
 
      cd scripts & python export_stage_1_smpl.py
 
 export_stage_1_smpl.py 돌릴 때 path 수정: 
-net_save_path = '/intern1/mmai08/GaussianAvatar/output/dongals/train_stage1/net/iteration_180'
-smpl_parms_path = '/intern1/mmai08/GaussianAvatar/data/user/dongals/train'
+
+    net_save_path = '/intern1/mmai08/GaussianAvatar/output/dongals/train_stage1/net/iteration_180'
+    smpl_parms_path = '/intern1/mmai08/GaussianAvatar/data/user/dongals/train'
 
      python gen_pose_map_our_smpl.py
 
 gen_pose_map_our_smpl.py 돌릴 때 path 수정: 
+
     smpl_parm_path = '../data/user/dongals/train'
     parms_name = 'smpl_parms_pred.pth
-    
+.
+
      cd .. &  python train.py -s $path_to_data/$subject -m output/{$subject}_stage2 --train_stage 2 --stage1_out_path $path_to_stage1_net_save_path
 
 
@@ -54,15 +59,18 @@ gen_pose_map_our_smpl.py 돌릴 때 path 수정:
 
 gen_pose_map_our_smpl.py를 돌려서 novel_pose의 inp_map을 얻어야 함.
 path 수정할 것: 
-smpl_parm_path = '../assets/test_pose'
-parms_name = 'smpl_parms.pth'
+
+    smpl_parm_path = '../assets/test_pose'
+    parms_name = 'smpl_parms.pth'
+.
 
      python gen_pose_map_our_smpl.py
 
 stage1에서 렌더링하는 경우:
 
 render_novel_pose.py의 line 16:
-avatarmodel.load(epoch)
+
+    avatarmodel.load(epoch)
 
 assets/test_pose 폴더의 pose정보와 transl 정보를 가져와서 self.net을 통과하여 Gaussian parameter(points, colors, scales)를 얻음.
 
@@ -70,7 +78,8 @@ assets/test_pose 폴더의 pose정보와 transl 정보를 가져와서 self.net�
 stage2에서 렌더링하는 경우:
 
 render_novel_pose.py의 line 16:
-avatarmodel.stage2_load(epoch)
+
+    avatarmodel.stage2_load(epoch)
 
 avatar_model.py의 render_free_stage2함수를 수정: (아래 코드 부분만 복붙하면 될 것 같습니다.)
 
