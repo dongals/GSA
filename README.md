@@ -76,9 +76,7 @@ path 수정할 것:
 터미널 명령어:
 
      python gen_pose_map_our_smpl.py
-.
-.
-.
+
 stage1에서 렌더링하는 경우:
 
 render_novel_pose.py의 line 16:
@@ -87,9 +85,7 @@ render_novel_pose.py의 line 16:
 
 설명: assets/test_pose 폴더의 pose정보와 transl 정보를 가져와서 self.net을 통과하여 Gaussian parameter(points, colors, scales)를 얻음.
 
-.
-.
-.
+
 stage2에서 렌더링하는 경우:
 
 render_novel_pose.py의 line 16:
