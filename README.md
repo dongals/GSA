@@ -6,26 +6,26 @@ GaussianAvatar 코드 수정한 것들 여기다 올림. original repo: https://
 
 
 ## train
-data/${subject}
- ├── images
- ├── masks
- ├── masked_images
- ├── test
- ├── train
- ├── cameras.npz
- └── poses_optimized.npz
+    data/${subject}
+     ├── images
+     ├── masks
+     ├── masked_images
+     ├── test
+     ├── train
+     ├── cameras.npz
+     └── poses_optimized.npz
 
- data/${subject}/train
- ├── images
- ├── inp_map
- ├── masks
- ├── norm_obj
- ├── cam_parms.npz
- ├── cano_smpl.obj
- ├── query_posemap_256_cano_smpl.npz
- ├── smpl_cano_joint_mat.pth
- ├── smpl_parms.pth
- └── smpl_parms_pred.pth
+     data/${subject}/train
+     ├── images
+     ├── inp_map
+     ├── masks
+     ├── norm_obj
+     ├── cam_parms.npz
+     ├── cano_smpl.obj
+     ├── query_posemap_256_cano_smpl.npz
+     ├── smpl_cano_joint_mat.pth
+     ├── smpl_parms.pth
+     └── smpl_parms_pred.pth
 
  data-preprocessing 전에는 train 폴더에서 inp_map, norm_obj, smpl_parms_pred.pth가 없음.
  train stage1을 돌리고 export_stage1_smpl.py를 실행하면 stage1의 결과인 smpl_parms_pred.pth가 나옴. (pose와 transl이 optimize한 것)
@@ -33,21 +33,21 @@ data/${subject}
  train stage2를 돌릴 때의 차이점은 smpl_parms_pth 대신 smpl_parms_pred.pth를 사용하고, inp_map을 사용하는 것이다. (inp_map은 pose_encoder를 통과시켜서 gaussian parameter인 point,color,scale을 얻는데 사용한다.)
  이렇게 해서 얻은 train_stage2의 prediction 결과를 렌더링한 것이 가장 정확하고, novel pose를 적용해서 렌더링하면 정확도가 떨어진다.
  
- python train.py -s $path_to_data/$subject -m output/{$subject}_stage1 --train_stage 1 --pose_op_start_iter 10
+     python train.py -s $path_to_data/$subject -m output/{$subject}_stage1 --train_stage 1 --pose_op_start_iter 10
 
- cd scripts & python export_stage_1_smpl.py
+     cd scripts & python export_stage_1_smpl.py
 
 export_stage_1_smpl.py 돌릴 때 path 수정: 
 net_save_path = '/intern1/mmai08/GaussianAvatar/output/dongals/train_stage1/net/iteration_180'
 smpl_parms_path = '/intern1/mmai08/GaussianAvatar/data/user/dongals/train'
 
- python gen_pose_map_our_smpl.py
+     python gen_pose_map_our_smpl.py
 
 gen_pose_map_our_smpl.py 돌릴 때 path 수정: 
     smpl_parm_path = '../data/user/dongals/train'
     parms_name = 'smpl_parms_pred.pth
     
- cd .. &  python train.py -s $path_to_data/$subject -m output/{$subject}_stage2 --train_stage 2 --stage1_out_path $path_to_stage1_net_save_path
+     cd .. &  python train.py -s $path_to_data/$subject -m output/{$subject}_stage2 --train_stage 2 --stage1_out_path $path_to_stage1_net_save_path
 
 
 ### render_novel_pose.py
@@ -57,7 +57,7 @@ path 수정할 것:
 smpl_parm_path = '../assets/test_pose'
 parms_name = 'smpl_parms.pth'
 
- python gen_pose_map_our_smpl.py
+     python gen_pose_map_our_smpl.py
 
 stage1에서 렌더링하는 경우:
 
