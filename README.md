@@ -66,7 +66,7 @@ gen_pose_map_our_smpl.py 돌릴 때 path 수정:
      cd .. &  python train.py -s $path_to_data/$subject -m output/{$subject}_stage2 --train_stage 2 --stage1_out_path $path_to_stage1_net_save_path
 
 
-### render_novel_pose.py
+## render_novel_pose.py
 
 gen_pose_map_our_smpl.py를 돌려서 novel_pose의 inp_map을 얻어야 함.
 path 수정할 것: 
