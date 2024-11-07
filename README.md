@@ -33,10 +33,10 @@ GaussianAvatar 코드 수정한 것들 여기다 올림. original repo: https://
  train stage1을 돌리고 export_stage1_smpl.py를 실행하면 stage1의 결과인 smpl_parms_pred.pth가 나옴. (pose와 transl이 optimize한 것)
  
  gen_pose_map_our_smpl.py를 돌리면 norm_obj, inp_map 폴더가 나옴.
- 부연설명: 수정된 포즈(=smpl_parms_pred.pth)를 smpl 함수에 대입해서 나온 게 norm_obj이고, norm_obj를 pos_render라는 함수를 사용하여 uv_pos, uv_face, face_id parameter를 얻고 inp_posemap_128_*.npz로 저장함.
+     부연설명: 수정된 포즈(=smpl_parms_pred.pth)를 smpl 함수에 대입해서 나온 게 norm_obj이고, norm_obj를 pos_render라는 함수를 사용하여 uv_pos, uv_face, face_id parameter를 얻고 inp_posemap_128_*.npz로 저장함.
  
  train stage2를 돌릴 때의 차이점은 smpl_parms_pth 대신 smpl_parms_pred.pth를 사용하고, inp_map을 사용하는 것이다.
- 부연설명: inp_map은 pose_encoder를 통과시켜서 gaussian parameter인 point,color,scale을 얻는데 사용한다.
+     부연설명: inp_map은 pose_encoder를 통과시켜서 gaussian parameter인 point,color,scale을 얻는데 사용한다.
  
  이렇게 해서 얻은 train_stage2의 prediction 결과를 렌더링한 것이 가장 정확하고, novel pose를 적용해서 렌더링하면 정확도가 떨어진다.
  
