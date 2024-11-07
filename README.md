@@ -73,7 +73,7 @@ path 수정할 것:
 
     smpl_parm_path = '../assets/test_pose'
     parms_name = 'smpl_parms.pth'
-.
+터미널 명령어:
 
      python gen_pose_map_our_smpl.py
 
@@ -83,7 +83,9 @@ render_novel_pose.py의 line 16:
 
     avatarmodel.load(epoch)
 
-assets/test_pose 폴더의 pose정보와 transl 정보를 가져와서 self.net을 통과하여 Gaussian parameter(points, colors, scales)를 얻음.
+혹은 avatarmodel.stage_load(epoch)으로 해도 될 것 같음.
+
+설명: assets/test_pose 폴더의 pose정보와 transl 정보를 가져와서 self.net을 통과하여 Gaussian parameter(points, colors, scales)를 얻음.
 
 
 stage2에서 렌더링하는 경우:
